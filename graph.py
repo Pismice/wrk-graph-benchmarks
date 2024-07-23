@@ -31,7 +31,7 @@ def plot(kind='', title='', ylabel='', means=None):
     # Plot the graph
     plt.figure(figsize=(10, 6))  # Adjust the figure size as needed
     bars = plt.bar(labels, values)
-    plt.xlabel("Subject")
+    plt.xlabel("Subjects")
     plt.ylabel(ylabel)
     plt.title(title)
     plt.xticks(rotation=45)  # Rotate x-axis labels for better readability

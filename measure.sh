@@ -84,10 +84,38 @@ if [ "$SUBJECT" = "jetzig" ] ; then
     URL=http://127.0.0.1:8080
 fi
 
+if [ "$SUBJECT" = "http.zig" ] ; then
+    cd ./http.zig && zig build -Doptimize=ReleaseFast
+    $TSK_SRV ./zig-out/bin/httpo &
+    PID=$!
+    URL=http://127.0.0.1:5882
+fi
+
+if [ "$SUBJECT" = "httpz-db" ] ; then
+    cd ./httpz-db && zig build -Doptimize=ReleaseFast
+    $TSK_SRV ./zig-out/bin/te &
+    PID=$!
+    URL=http://127.0.0.1:1950
+fi
+
+if [ "$SUBJECT" = "std-db" ] ; then
+    cd ./std-db && zig build -Doptimize=ReleaseFast
+    cd zig-out/bin
+    $TSK_SRV ./std &
+    PID=$!
+    URL=http://127.0.0.1:4242
+fi
+
 if [ "$SUBJECT" = "tokamak" ] ; then
-    #zig build -Doptimize=ReleaseFast wrk & > /dev/null
     cd ./tokamak && zig build -Doptimize=ReleaseFast
     $TSK_SRV ./zig-out/bin/toka> /dev/null &
+    PID=$!
+    URL=http://127.0.0.1:8080
+fi
+
+if [ "$SUBJECT" = "tokamak-old" ] ; then
+    cd ./tokamak-old && zig build -Doptimize=ReleaseFast
+    $TSK_SRV ./zig-out/bin/tokamak> /dev/null &
     PID=$!
     URL=http://127.0.0.1:8080
 fi
