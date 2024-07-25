@@ -37,6 +37,8 @@ pub fn build(b: *std.Build) void {
     });
     const sqlite = b.dependency("sqlite", .{});
     const httpz = b.dependency("httpz", .{});
+    exe.linkLibC();
+    exe.linkSystemLibrary("sqlite3");
     exe.root_module.addImport("httpz", httpz.module("httpz"));
     exe.root_module.addImport("sqlite", sqlite.module("sqlite"));
 

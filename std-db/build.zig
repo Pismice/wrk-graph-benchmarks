@@ -37,6 +37,8 @@ pub fn build(b: *std.Build) void {
     });
 
     const sqlite = b.dependency("sqlite", .{});
+    exe.linkLibC();
+    exe.linkSystemLibrary("sqlite3");
     exe.root_module.addImport("sqlite", sqlite.module("sqlite"));
 
     // This declares intent for the executable to be installed into the

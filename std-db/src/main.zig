@@ -10,7 +10,6 @@ pub fn main() !void {
 
     std.debug.print("Server up and running !\n", .{});
 
-    // Thread pool
     const allocator = std.heap.page_allocator;
 
     var sqldb = try sqlite.Db.init(.{
